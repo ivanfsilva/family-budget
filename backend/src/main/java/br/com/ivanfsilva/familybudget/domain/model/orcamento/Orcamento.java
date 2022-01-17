@@ -1,18 +1,28 @@
 package br.com.ivanfsilva.familybudget.domain.model.orcamento;
 
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
 import java.io.Serializable;
 import java.math.BigDecimal;
 import java.time.LocalDate;
 
+@Entity
 public abstract class Orcamento implements Serializable {
     private static final long serialVersionUID = 1L;
 
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     protected Long id;
     protected String descricao;
     protected BigDecimal valor;
     protected LocalDate data;
 
     protected TipoLancamento tipoLancamento;
+
+    public Orcamento() {
+    }
 
     public Orcamento(Long id, String descricao, BigDecimal valor, LocalDate data, TipoLancamento tipoLancamento) {
         this.id = id;

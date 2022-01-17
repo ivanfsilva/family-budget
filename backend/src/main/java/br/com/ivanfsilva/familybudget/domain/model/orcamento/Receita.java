@@ -10,4 +10,5 @@ public class Receita extends Orcamento implements Serializable {
     public Receita(Long id, String descricao, BigDecimal valor, LocalDate data) {
         super(id, descricao, valor, data, TipoLancamento.Receita);
     }
+
 }

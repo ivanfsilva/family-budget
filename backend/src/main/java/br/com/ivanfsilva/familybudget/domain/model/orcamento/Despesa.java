@@ -10,4 +10,5 @@ public class Despesa extends Orcamento implements Serializable {
     public Despesa(Long id, String descricao, BigDecimal valor, LocalDate data) {
         super(id, descricao, valor, data, TipoLancamento.Despesa);
     }
+
 }
