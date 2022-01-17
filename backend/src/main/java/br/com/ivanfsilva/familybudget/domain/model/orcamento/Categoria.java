@@ -3,7 +3,7 @@ package br.com.ivanfsilva.familybudget.domain.model.orcamento;
 import javax.persistence.*;
 import java.io.Serializable;
 
-@Entity
+@Entity(name = "categorias")
 public class Categoria implements Serializable {
     private static final long serialVersionUID = 1L;
 
