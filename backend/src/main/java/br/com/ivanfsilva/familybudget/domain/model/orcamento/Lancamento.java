@@ -1,13 +1,14 @@
 package br.com.ivanfsilva.familybudget.domain.model.orcamento;
 
-public enum TipoLancamento {
+public enum Lancamento {
 
-    Receita("RECEITA"),
-    Despesa("DESPESA");
+    RECEITA("Receita"),
+    DESPESA_FIXA("Despesa Fixa"),
+    DESPESA_EVENTUAL("Despesa Eventual");
 
     private String descricao;
 
-    TipoLancamento(String descricao) {
+    Lancamento(String descricao) {
         this.descricao = descricao;
     }
 
