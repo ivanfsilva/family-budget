@@ -1,18 +1,17 @@
-package br.com.ivanfsilva.familybudget.domain.model.orcamento;
+package br.com.ivanfsilva.familybudget.api.dto;
 
+import br.com.ivanfsilva.familybudget.domain.model.orcamento.Categoria;
+import br.com.ivanfsilva.familybudget.domain.model.orcamento.Lancamento;
 import org.hibernate.validator.constraints.Length;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotEmpty;
 import java.io.Serializable;
 
-@Entity(name = "categorias")
-public class Categoria implements Serializable {
+public class CategoriaDTO implements Serializable {
     private static final long serialVersionUID = 1L;
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Integer id;
+    private int id;
 
     @NotEmpty(message = "Campo NOME é requerido")
     @Length(min = 5, max = 50, message = "O campo nome deve ter entre 5 e 50 caracteres")
@@ -23,36 +22,21 @@ public class Categoria implements Serializable {
     @Enumerated(EnumType.STRING)
     private Lancamento lancamento;
 
-    public Categoria() {
+    public CategoriaDTO(Categoria obj) {
+        this.id = obj.getId();
+        this.nome = obj.getNome();
+        this.lancamento = obj.getLancamento();
     }
 
-    public Categoria(int id, String nome, Lancamento lancamento) {
-        this.id = id;
-        this.nome = nome;
-        this.lancamento = lancamento;
-    }
-
-    public Integer getId() {
+    public int getId() {
         return id;
-    }
-
-    public void setId(Integer id) {
-        this.id = id;
     }
 
     public String getNome() {
         return nome;
     }
 
-    public void setNome(String nome) {
-        this.nome = nome;
-    }
-
     public Lancamento getLancamento() {
         return lancamento;
-    }
-
-    public void setLancamento(Lancamento lancamento) {
-        this.lancamento = lancamento;
     }
 }

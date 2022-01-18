@@ -24,4 +24,4 @@ INSERT INTO orcamento ( tipo_lancamento, id, data, descricao, lancamento, valor,
 INSERT INTO orcamento ( tipo_lancamento, id, data, descricao, lancamento, valor, categoria_id ) VALUES ( 'despesa', 10, '2022-01-17', 'Academia', 'DESPESA_FIXA', 80, 7 );
 
 INSERT INTO orcamento ( tipo_lancamento, id, data, descricao, lancamento, valor, categoria_id ) VALUES ( 'despesa', 11, '2022-01-17', 'NuBank', 'DESPESA_EVENTUAL', 280, 7 );
-INSERT INTO orcamento ( tipo_lancamento, id, data, descricao, lancamento, valor, categoria_id ) VALUES ( 'despesa', 12, '2022-01-17', 'IPVA', 'DESPESA_EVENTUAL', 280, 4 );
+INSERT INTO orcamento ( tipo_lancamento, id, data, descricao, lancamento, valor, categoria_id ) VALUES ( 'despesa', 12, '2022-01-17', 'IPVA', 'DESPESA_EVENTUAL', 400, 4 );
