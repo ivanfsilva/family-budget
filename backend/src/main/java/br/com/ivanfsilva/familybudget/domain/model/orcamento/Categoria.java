@@ -7,37 +7,23 @@ import javax.validation.constraints.NotEmpty;
 import java.io.Serializable;
 
 @Entity(name = "categorias")
-public class Categoria implements Serializable {
+public class Categoria extends EntidadeBaseInteger implements Serializable {
     private static final long serialVersionUID = 1L;
-
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Integer id;
 
     @NotEmpty(message = "Campo NOME é requerido")
     @Length(min = 5, max = 50, message = "O campo nome deve ter entre 5 e 50 caracteres")
     private String nome;
 
     @NotEmpty(message = "Campo LANÇAMENTO é requerido")
-    @Length(min = 5, max = 50, message = "O campo lançamento deve ter entre 5 e 50 caracteres")
     @Enumerated(EnumType.STRING)
     private Lancamento lancamento;
 
     public Categoria() {
     }
 
-    public Categoria(int id, String nome, Lancamento lancamento) {
-        this.id = id;
+    public Categoria(String nome, Lancamento lancamento) {
         this.nome = nome;
         this.lancamento = lancamento;
-    }
-
-    public Integer getId() {
-        return id;
-    }
-
-    public void setId(Integer id) {
-        this.id = id;
     }
 
     public String getNome() {

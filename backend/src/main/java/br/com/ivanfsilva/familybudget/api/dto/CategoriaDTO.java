@@ -11,16 +11,18 @@ import java.io.Serializable;
 public class CategoriaDTO implements Serializable {
     private static final long serialVersionUID = 1L;
 
-    private int id;
+    private Long id;
 
     @NotEmpty(message = "Campo NOME é requerido")
     @Length(min = 5, max = 50, message = "O campo nome deve ter entre 5 e 50 caracteres")
     private String nome;
 
     @NotEmpty(message = "Campo LANÇAMENTO é requerido")
-    @Length(min = 5, max = 50, message = "O campo lançamento deve ter entre 5 e 50 caracteres")
     @Enumerated(EnumType.STRING)
     private Lancamento lancamento;
+
+    public CategoriaDTO() {
+    }
 
     public CategoriaDTO(Categoria obj) {
         this.id = obj.getId();
@@ -28,7 +30,7 @@ public class CategoriaDTO implements Serializable {
         this.lancamento = obj.getLancamento();
     }
 
-    public int getId() {
+    public Long getId() {
         return id;
     }
 
