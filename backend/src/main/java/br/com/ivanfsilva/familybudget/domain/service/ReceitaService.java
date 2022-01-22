@@ -34,6 +34,12 @@ public class ReceitaService {
         return listDTO;
     }
 
+    public ResponseEntity<ReceitaDTO> findById(Long id) {
+        Optional<Receita> receitaOptional = receitaRepository.findById(id);
+        Optional<Categoria> categoria = categoriaRepository.getById(receitaOptional.get().getCategoria().getId());
+        return receitaOptional.map(receita -> ResponseEntity.ok(new ReceitaDTO(receita, categoria.get()))).orElseGet(() -> ResponseEntity.notFound().build());
+    }
+
     public ResponseEntity<ReceitaDTO> create(ReceitaDTO receitaDTO, UriComponentsBuilder uriBuilder) throws ReceitaExistenteException {
 
         Categoria cat = verificaSeCategoriaExiste(receitaDTO);
@@ -45,10 +51,13 @@ public class ReceitaService {
         return ResponseEntity.created(uri).body(new ReceitaDTO(receita));
     }
 
-    public ResponseEntity<ReceitaDTO> findById(Long id) {
+    public ResponseEntity<?> delete(Long id) {
         Optional<Receita> receitaOptional = receitaRepository.findById(id);
-        Optional<Categoria> categoria = categoriaRepository.getById(receitaOptional.get().getCategoria().getId());
-        return receitaOptional.map(receita -> ResponseEntity.ok(new ReceitaDTO(receita, categoria.get()))).orElseGet(() -> ResponseEntity.notFound().build());
+        if(receitaOptional.isPresent()){
+            receitaRepository.deleteById(id);
+            return ResponseEntity.ok().build();
+        }
+        return ResponseEntity.notFound().build();
     }
 
     @Transactional(readOnly = true)

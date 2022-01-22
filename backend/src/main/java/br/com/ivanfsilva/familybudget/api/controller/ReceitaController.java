@@ -35,4 +35,10 @@ public class ReceitaController {
     public ResponseEntity<ReceitaDTO> create(@RequestBody @Valid ReceitaDTO receitaDTO, UriComponentsBuilder uriBuilder) throws ReceitaExistenteException {
         return receitaService.create(receitaDTO, uriBuilder);
     }
+
+    @DeleteMapping("/{id}")
+    @Transactional
+    public ResponseEntity<?> delete(@PathVariable Long id){
+        return receitaService.delete(id);
+    }
 }
