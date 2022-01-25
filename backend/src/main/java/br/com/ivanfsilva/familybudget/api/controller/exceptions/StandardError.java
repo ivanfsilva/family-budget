@@ -1,41 +1,63 @@
 package br.com.ivanfsilva.familybudget.api.controller.exceptions;
 
-public class StandardError {
+import java.io.Serializable;
+import java.time.Instant;
 
-    private Long timeStamp;
-    private Integer status;
-    private String error;
+public class StandardError implements Serializable {
 
-    public StandardError() {
-    }
+	private static final long serialVersionUID = 1L;
 
-    public StandardError(Long timeStamp, Integer status, String error) {
-        this.timeStamp = timeStamp;
-        this.status = status;
-        this.error = error;
-    }
+	private Instant timeStamp;
+	private Integer status;
+	private String error;
+	private String message;
+	private String path;
 
-    public Long getTimeStamp() {
-        return timeStamp;
-    }
+	public StandardError() {
+	}
 
-    public void setTimeStamp(Long timeStamp) {
-        this.timeStamp = timeStamp;
-    }
+	public Instant getTimeStamp() {
+		return timeStamp;
+	}
 
-    public Integer getStatus() {
-        return status;
-    }
+	public void setTimeStamp(Instant timeStamp) {
+		this.timeStamp = timeStamp;
+	}
 
-    public void setStatus(Integer status) {
-        this.status = status;
-    }
+	public Integer getStatus() {
+		return status;
+	}
 
-    public String getError() {
-        return error;
-    }
+	public void setStatus(Integer status) {
+		this.status = status;
+	}
 
-    public void setError(String error) {
-        this.error = error;
-    }
+	public String getError() {
+		return error;
+	}
+
+	public void setError(String error) {
+		this.error = error;
+	}
+
+	public String getMessage() {
+		return message;
+	}
+
+	public void setMessage(String message) {
+		this.message = message;
+	}
+
+	public String getPath() {
+		return path;
+	}
+
+	public void setPath(String path) {
+		this.path = path;
+	}
+
+	public static long getSerialversionuid() {
+		return serialVersionUID;
+	}
+
 }
