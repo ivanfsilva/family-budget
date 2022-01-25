@@ -4,10 +4,12 @@ import br.com.ivanfsilva.familybudget.api.dto.DespesaDTO;
 import br.com.ivanfsilva.familybudget.domain.model.orcamento.Despesa;
 import br.com.ivanfsilva.familybudget.domain.repository.DespesaCategory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import java.util.List;
 import java.util.stream.Collectors;
 
+@Service
 public class DespesaService {
 
     @Autowired

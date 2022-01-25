@@ -22,6 +22,7 @@ public class ReceitaController {
     @GetMapping
     public ResponseEntity<List<ReceitaDTO>> findAll() {
         List<ReceitaDTO> listDTO = receitaService.findAll();
+
         return ResponseEntity.ok().body( listDTO );
     }
 
