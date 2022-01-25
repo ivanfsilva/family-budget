@@ -1,11 +1,10 @@
 package br.com.ivanfsilva.familybudget.api.dto;
 
 import br.com.ivanfsilva.familybudget.domain.model.orcamento.Categoria;
+import br.com.ivanfsilva.familybudget.domain.model.orcamento.Lancamento;
 import br.com.ivanfsilva.familybudget.domain.model.orcamento.Receita;
+import com.fasterxml.jackson.annotation.JsonFormat;
 
-import javax.validation.constraints.DecimalMin;
-import javax.validation.constraints.Digits;
-import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
 import java.io.Serializable;
 import java.math.BigDecimal;
@@ -22,13 +21,14 @@ public class ReceitaDTO implements Serializable {
     private String descricao;
 
     @NotNull
+    private Lancamento lancamento;
+
+    @NotNull
     private BigDecimal valor;
 
     @NotNull
+    @JsonFormat(pattern = "dd/MM/yyyy")
     private LocalDate data;
-
-    @NotNull
-    private CategoriaDTO categoria;
 
     public ReceitaDTO() {
     }
@@ -36,13 +36,9 @@ public class ReceitaDTO implements Serializable {
     public ReceitaDTO(Receita receita) {
         this.id = receita.getId();
         this.descricao = receita.getDescricao();
+        this.lancamento = receita.getLancamento();
         this.valor = receita.getValor();
         this.data = receita.getData();
-    }
-
-    public ReceitaDTO(Receita receita, Categoria categoria) {
-        this(receita);
-        this.categoria = new CategoriaDTO(categoria);
     }
 
     public static List<ReceitaDTO> converterLista(List<Receita> receitas) {
@@ -65,6 +61,14 @@ public class ReceitaDTO implements Serializable {
         this.descricao = descricao;
     }
 
+    public Lancamento getLancamento() {
+        return lancamento;
+    }
+
+    public void setLancamento(Lancamento lancamento) {
+        this.lancamento = lancamento;
+    }
+
     public BigDecimal getValor() {
         return valor;
     }
@@ -80,13 +84,4 @@ public class ReceitaDTO implements Serializable {
     public void setData(LocalDate data) {
         this.data = data;
     }
-
-    public CategoriaDTO getCategoria() {
-        return categoria;
-    }
-
-    public void setCategoria(CategoriaDTO categoria) {
-        this.categoria = categoria;
-    }
-
 }

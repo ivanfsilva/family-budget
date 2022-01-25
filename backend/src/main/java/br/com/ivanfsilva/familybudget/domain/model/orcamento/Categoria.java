@@ -1,44 +1,37 @@
 package br.com.ivanfsilva.familybudget.domain.model.orcamento;
 
-import org.hibernate.validator.constraints.Length;
+public enum Categoria {
 
-import javax.persistence.*;
-import javax.validation.constraints.NotEmpty;
-import java.io.Serializable;
+    ALIMENTACAO("Alimentação"),
+    SAUDE("Saúde"),
+    MORADIA("Moradia"),
+    TRANSPORTE("Transporte"),
+    EDUCACAO("Educação"),
+    LAZER("Lazer"),
+    IMPREVISTOS("Imprevistos"),
+    OUTRAS("Outras");
 
-@Entity(name = "categorias")
-public class Categoria extends EntidadeBaseInteger implements Serializable {
-    private static final long serialVersionUID = 1L;
+    private String descricao;
 
-    @NotEmpty(message = "Campo NOME é requerido")
-    @Length(min = 5, max = 50, message = "O campo nome deve ter entre 5 e 50 caracteres")
-    private String nome;
-
-    @NotEmpty(message = "Campo LANÇAMENTO é requerido")
-    @Enumerated(EnumType.STRING)
-    private Lancamento lancamento;
-
-    public Categoria() {
+    Categoria(String descricao) {
+        this.descricao = descricao;
     }
 
-    public Categoria(String nome, Lancamento lancamento) {
-        this.nome = nome;
-        this.lancamento = lancamento;
+    public String getDescricao() {
+        return descricao;
     }
 
-    public String getNome() {
-        return nome;
-    }
+    public static Categoria toEnum(String descrico) {
+        if (descrico == null) {
+            return Categoria.OUTRAS;
+        }
 
-    public void setNome(String nome) {
-        this.nome = nome;
-    }
+        for (Categoria c : Categoria.values()) {
+            if (descrico.equals(c.getDescricao())) {
+                return c;
+            }
+        }
 
-    public Lancamento getLancamento() {
-        return lancamento;
-    }
-
-    public void setLancamento(Lancamento lancamento) {
-        this.lancamento = lancamento;
+        throw new IllegalArgumentException("Categoria inválida");
     }
 }

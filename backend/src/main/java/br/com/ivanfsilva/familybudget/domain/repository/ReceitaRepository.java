@@ -12,4 +12,6 @@ import java.util.Optional;
 public interface ReceitaRepository extends JpaRepository<Receita, Long> {
 
     Optional<Receita> findByDescricaoAndData(String descricao, LocalDate data);
+
+    Optional<Receita> findById(Receita receita);
 }
