@@ -1,6 +1,7 @@
 package br.com.ivanfsilva.familybudget.api.controller.exceptions;
 
 import br.com.ivanfsilva.familybudget.domain.service.exceptions.DatabaseException;
+import br.com.ivanfsilva.familybudget.domain.service.exceptions.ReceitaExistenteException;
 import br.com.ivanfsilva.familybudget.domain.service.exceptions.ResourceNotFoundException;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -25,12 +26,14 @@ public class ResourceExceptionHandler {
 		return ResponseEntity.status(status).body(error);
 	}
 
-	private void infoErrors(StandardError error, HttpStatus status, String mensagem, String e, HttpServletRequest request) {
-		error.setTimeStamp(Instant.now());
-		error.setStatus(status.value());
-		error.setError(mensagem);
-		error.setMessage(e);
-		error.setPath(request.getRequestURI());
+	@ExceptionHandler(ReceitaExistenteException.class)
+	public ResponseEntity<StandardError> resourceFound(ReceitaExistenteException e, HttpServletRequest request) {
+		HttpStatus status = HttpStatus.FOUND;
+
+		StandardError error = new StandardError();
+		infoErrors(error, status, "Lançamento Encontrado", e.getMessage(), request);
+
+		return ResponseEntity.status(status).body(error);
 	}
 
 	@ExceptionHandler({DatabaseException.class})
@@ -57,4 +60,11 @@ public class ResourceExceptionHandler {
 		return ResponseEntity.status(status).body(error);
 	}
 
+	private void infoErrors(StandardError error, HttpStatus status, String mensagem, String e, HttpServletRequest request) {
+		error.setTimeStamp(Instant.now());
+		error.setStatus(status.value());
+		error.setError(mensagem);
+		error.setMessage(e);
+		error.setPath(request.getRequestURI());
+	}
 }

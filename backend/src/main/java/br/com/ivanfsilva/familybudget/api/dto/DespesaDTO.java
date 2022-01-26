@@ -25,7 +25,6 @@ public class DespesaDTO implements Serializable {
     protected BigDecimal valor;
 
     @NotNull
-    @JsonFormat(pattern = "dd/MM/yyyy")
     protected LocalDate data;
 
     @Enumerated(EnumType.STRING)
@@ -34,6 +33,9 @@ public class DespesaDTO implements Serializable {
     @NotNull(message = "Campo CATEGORIA é requerido")
     @Enumerated(EnumType.STRING)
     private Categoria categoria;
+
+    public DespesaDTO() {
+    }
 
     public DespesaDTO(Despesa despesa) {
         this.id = despesa.getId();

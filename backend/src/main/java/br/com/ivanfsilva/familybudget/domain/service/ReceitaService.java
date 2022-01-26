@@ -1,10 +1,9 @@
 package br.com.ivanfsilva.familybudget.domain.service;
 
 import br.com.ivanfsilva.familybudget.api.dto.ReceitaDTO;
-import br.com.ivanfsilva.familybudget.domain.exceptionhandler.ReceitaExistenteException;
-import br.com.ivanfsilva.familybudget.domain.model.orcamento.Categoria;
 import br.com.ivanfsilva.familybudget.domain.model.orcamento.Receita;
 import br.com.ivanfsilva.familybudget.domain.repository.ReceitaRepository;
+import br.com.ivanfsilva.familybudget.domain.service.exceptions.ReceitaExistenteException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
@@ -74,7 +73,7 @@ public class ReceitaService {
         return ResponseEntity.notFound().build();
     }
 
-    private void verificaSeReceitaExisteNoMes(Receita receita) throws ReceitaExistenteException {
+    private void verificaSeReceitaExisteNoMes(Receita receita) {
         Optional<Receita> receitaEncontrada = receitaRepository.findByDescricaoAndData(receita.getDescricao(), receita.getData());
         if(receitaEncontrada.isPresent()) {
             throw new ReceitaExistenteException("Já existe uma receita cadastrada com a mesma descrição no mês informado");

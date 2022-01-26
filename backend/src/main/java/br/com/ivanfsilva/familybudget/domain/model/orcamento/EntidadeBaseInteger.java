@@ -9,7 +9,7 @@ import javax.persistence.MappedSuperclass;
 public class EntidadeBaseInteger {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
 
     public EntidadeBaseInteger() {

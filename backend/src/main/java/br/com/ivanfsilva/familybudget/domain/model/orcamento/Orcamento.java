@@ -11,16 +11,17 @@ import java.io.Serializable;
 import java.math.BigDecimal;
 import java.time.LocalDate;
 
-@Entity
+//@Entity
 //@Table(name = "orcamento")
 @Inheritance(strategy = InheritanceType.TABLE_PER_CLASS)
 //@DiscriminatorColumn(name = "tipo_lancamento",
 //        discriminatorType = DiscriminatorType.STRING)
+@MappedSuperclass
 public abstract class Orcamento implements Serializable {
     private static final long serialVersionUID = 1L;
 
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy=GenerationType.IDENTITY)
     private Long id;
 
     @NotEmpty(message = "Campo DESCRIÇÃO é requerido")

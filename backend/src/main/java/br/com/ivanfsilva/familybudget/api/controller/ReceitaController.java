@@ -1,7 +1,6 @@
 package br.com.ivanfsilva.familybudget.api.controller;
 
 import br.com.ivanfsilva.familybudget.api.dto.ReceitaDTO;
-import br.com.ivanfsilva.familybudget.domain.exceptionhandler.ReceitaExistenteException;
 import br.com.ivanfsilva.familybudget.domain.service.ReceitaService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -22,7 +21,6 @@ public class ReceitaController {
     @GetMapping
     public ResponseEntity<List<ReceitaDTO>> findAll() {
         List<ReceitaDTO> listDTO = receitaService.findAll();
-
         return ResponseEntity.ok().body( listDTO );
     }
 
@@ -33,7 +31,7 @@ public class ReceitaController {
 
     @PostMapping
     @Transactional
-    public ResponseEntity<ReceitaDTO> create(@RequestBody @Valid ReceitaDTO receitaDTO, UriComponentsBuilder uriBuilder) throws ReceitaExistenteException {
+    public ResponseEntity<ReceitaDTO> create(@RequestBody @Valid ReceitaDTO receitaDTO, UriComponentsBuilder uriBuilder) {
         return receitaService.create(receitaDTO, uriBuilder);
     }
 

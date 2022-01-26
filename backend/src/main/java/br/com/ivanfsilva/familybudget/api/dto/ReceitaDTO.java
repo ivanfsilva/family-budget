@@ -27,7 +27,6 @@ public class ReceitaDTO implements Serializable {
     private BigDecimal valor;
 
     @NotNull
-    @JsonFormat(pattern = "dd/MM/yyyy")
     private LocalDate data;
 
     public ReceitaDTO() {
