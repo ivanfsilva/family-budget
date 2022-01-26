@@ -42,4 +42,16 @@ public class DespesaController {
 
         return ResponseEntity.created(uri).body(dto);
     }
+
+    @PutMapping(value = "/{id}")
+    public ResponseEntity<DespesaDTO> update(@Valid @PathVariable Long id, @RequestBody DespesaDTO dto) {
+        dto = despesaService.update(id, dto);
+        return ResponseEntity.ok().body(dto);
+    }
+
+    @DeleteMapping(value = "/{id}")
+    public ResponseEntity<Void> delete(@PathVariable Long id) {
+        despesaService.delete(id);
+        return ResponseEntity.noContent().build();
+    }
 }

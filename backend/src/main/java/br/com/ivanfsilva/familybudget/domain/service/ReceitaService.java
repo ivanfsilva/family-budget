@@ -76,7 +76,7 @@ public class ReceitaService {
     private void verificaSeReceitaExisteNoMes(Receita receita) {
         Optional<Receita> receitaEncontrada = receitaRepository.findByDescricaoAndData(receita.getDescricao(), receita.getData());
         if(receitaEncontrada.isPresent()) {
-            throw new ReceitaExistenteException("Já existe uma receita cadastrada com a mesma descrição no mês informado");
+            throw new ReceitaExistenteException("Já existe uma RECEITA cadastrada com a mesma descrição no mês informado");
         }
     }
 }

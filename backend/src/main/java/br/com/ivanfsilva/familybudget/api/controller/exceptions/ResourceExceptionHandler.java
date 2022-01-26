@@ -1,6 +1,7 @@
 package br.com.ivanfsilva.familybudget.api.controller.exceptions;
 
 import br.com.ivanfsilva.familybudget.domain.service.exceptions.DatabaseException;
+import br.com.ivanfsilva.familybudget.domain.service.exceptions.DespesaExistenteException;
 import br.com.ivanfsilva.familybudget.domain.service.exceptions.ReceitaExistenteException;
 import br.com.ivanfsilva.familybudget.domain.service.exceptions.ResourceNotFoundException;
 import org.springframework.http.HttpStatus;
@@ -28,6 +29,16 @@ public class ResourceExceptionHandler {
 
 	@ExceptionHandler(ReceitaExistenteException.class)
 	public ResponseEntity<StandardError> resourceFound(ReceitaExistenteException e, HttpServletRequest request) {
+		HttpStatus status = HttpStatus.FOUND;
+
+		StandardError error = new StandardError();
+		infoErrors(error, status, "Lançamento Encontrado", e.getMessage(), request);
+
+		return ResponseEntity.status(status).body(error);
+	}
+
+	@ExceptionHandler(DespesaExistenteException.class)
+	public ResponseEntity<StandardError> resourceFound(DespesaExistenteException e, HttpServletRequest request) {
 		HttpStatus status = HttpStatus.FOUND;
 
 		StandardError error = new StandardError();

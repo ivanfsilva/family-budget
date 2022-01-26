@@ -44,6 +44,7 @@ public class ReceitaController {
     @DeleteMapping("/{id}")
     @Transactional
     public ResponseEntity<?> delete(@PathVariable Long id){
+
         return receitaService.delete(id);
     }
 }
