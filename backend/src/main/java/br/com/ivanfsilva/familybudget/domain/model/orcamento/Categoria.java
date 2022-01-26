@@ -1,5 +1,7 @@
 package br.com.ivanfsilva.familybudget.domain.model.orcamento;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
+
 public enum Categoria {
 
     ALIMENTACAO("Alimentação"),
@@ -9,7 +11,9 @@ public enum Categoria {
     EDUCACAO("Educação"),
     LAZER("Lazer"),
     IMPREVISTOS("Imprevistos"),
-    OUTRAS("Outras");
+    OUTRAS("Outras"),
+    @JsonProperty("''")
+    VAZIO("");
 
     private String descricao;
 
@@ -31,7 +35,12 @@ public enum Categoria {
                 return c;
             }
         }
-
         throw new IllegalArgumentException("Categoria inválida");
     }
+
+    @Override
+    public String toString() {
+        return this == VAZIO ? "" : this.name();
+    }
 }
+

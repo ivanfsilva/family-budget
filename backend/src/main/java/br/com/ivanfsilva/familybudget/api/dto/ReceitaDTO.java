@@ -1,9 +1,7 @@
 package br.com.ivanfsilva.familybudget.api.dto;
 
-import br.com.ivanfsilva.familybudget.domain.model.orcamento.Categoria;
 import br.com.ivanfsilva.familybudget.domain.model.orcamento.Lancamento;
 import br.com.ivanfsilva.familybudget.domain.model.orcamento.Receita;
-import com.fasterxml.jackson.annotation.JsonFormat;
 
 import javax.validation.constraints.NotNull;
 import java.io.Serializable;
@@ -17,16 +15,16 @@ public class ReceitaDTO implements Serializable {
 
     private Long id;
 
-    @NotNull
+    @NotNull(message = "Campo DESCRIÇÃO é requerido")
     private String descricao;
 
-    @NotNull
+    @NotNull(message = "Campo LANÇAMENTO é requerido")
     private Lancamento lancamento;
 
-    @NotNull
+    @NotNull(message = "Campo VALOR é requerido")
     private BigDecimal valor;
 
-    @NotNull
+    @NotNull(message = "Campo DATA é requerido")
     private LocalDate data;
 
     public ReceitaDTO() {

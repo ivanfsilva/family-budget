@@ -3,8 +3,6 @@ package br.com.ivanfsilva.familybudget.api.dto;
 import br.com.ivanfsilva.familybudget.domain.model.orcamento.Categoria;
 import br.com.ivanfsilva.familybudget.domain.model.orcamento.Despesa;
 import br.com.ivanfsilva.familybudget.domain.model.orcamento.Lancamento;
-import br.com.ivanfsilva.familybudget.domain.model.orcamento.Receita;
-import com.fasterxml.jackson.annotation.JsonFormat;
 
 import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
@@ -18,19 +16,18 @@ public class DespesaDTO implements Serializable {
 
     private Long id;
 
-    @NotNull
+    @NotNull(message = "Campo DESCRIÇÃO é requerido")
     protected String descricao;
 
-    @NotNull
+    @NotNull(message = "Campo VALOR é requerido")
     protected BigDecimal valor;
 
-    @NotNull
+    @NotNull(message = "Campo Data de Nascimento é obrigatório")
     protected LocalDate data;
 
     @Enumerated(EnumType.STRING)
     protected Lancamento lancamento;
 
-    @NotNull(message = "Campo CATEGORIA é requerido")
     @Enumerated(EnumType.STRING)
     private Categoria categoria;
 
@@ -50,23 +47,47 @@ public class DespesaDTO implements Serializable {
         return id;
     }
 
+    public void setId(Long id) {
+        this.id = id;
+    }
+
     public String getDescricao() {
         return descricao;
+    }
+
+    public void setDescricao(String descricao) {
+        this.descricao = descricao;
     }
 
     public BigDecimal getValor() {
         return valor;
     }
 
+    public void setValor(BigDecimal valor) {
+        this.valor = valor;
+    }
+
     public LocalDate getData() {
         return data;
+    }
+
+    public void setData(LocalDate data) {
+        this.data = data;
     }
 
     public Lancamento getLancamento() {
         return lancamento;
     }
 
+    public void setLancamento(Lancamento lancamento) {
+        this.lancamento = lancamento;
+    }
+
     public Categoria getCategoria() {
         return categoria;
+    }
+
+    public void setCategoria(Categoria categoria) {
+        this.categoria = categoria;
     }
 }

@@ -3,10 +3,7 @@ package br.com.ivanfsilva.familybudget.domain.model.orcamento;
 import org.hibernate.validator.constraints.Length;
 
 import javax.persistence.*;
-import javax.validation.constraints.DecimalMin;
-import javax.validation.constraints.Digits;
-import javax.validation.constraints.NotEmpty;
-import javax.validation.constraints.NotNull;
+import javax.validation.constraints.*;
 import java.io.Serializable;
 import java.math.BigDecimal;
 import java.time.LocalDate;
@@ -29,10 +26,10 @@ public abstract class Orcamento implements Serializable {
     @Column(nullable=false, length=50)
     protected String descricao;
 
-    @NotNull(message = "Campo VALOR é requerido")
     @DecimalMin(value = "0.0", inclusive = false, message = "O campo valor deve ser maior que zero")
     @Digits(integer=5, fraction=2)
     protected BigDecimal valor;
+
     protected LocalDate data;
 
     @Enumerated(EnumType.STRING)

@@ -1,8 +1,6 @@
 package br.com.ivanfsilva.familybudget.api.controller;
 
 import br.com.ivanfsilva.familybudget.api.dto.DespesaDTO;
-import br.com.ivanfsilva.familybudget.api.dto.ReceitaDTO;
-import br.com.ivanfsilva.familybudget.domain.model.orcamento.Despesa;
 import br.com.ivanfsilva.familybudget.domain.service.DespesaService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -12,7 +10,6 @@ import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 import javax.validation.Valid;
 import java.net.URI;
 import java.util.List;
-import java.util.Optional;
 
 @RestController
 @RequestMapping("/despesas")

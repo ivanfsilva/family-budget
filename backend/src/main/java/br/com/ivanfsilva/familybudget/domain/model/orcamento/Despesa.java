@@ -1,10 +1,8 @@
 package br.com.ivanfsilva.familybudget.domain.model.orcamento;
 
-import javax.persistence.DiscriminatorValue;
 import javax.persistence.Entity;
 import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
-import javax.validation.constraints.NotNull;
 import java.io.Serializable;
 import java.math.BigDecimal;
 import java.time.LocalDate;
@@ -14,7 +12,6 @@ import java.time.LocalDate;
 public class Despesa extends Orcamento implements Serializable {
     private static final long serialVersionUID = 1L;
 
-    @NotNull(message = "Campo CATEGORIA é requerido")
     @Enumerated(EnumType.STRING)
     protected Categoria categoria;
 
@@ -31,6 +28,11 @@ public class Despesa extends Orcamento implements Serializable {
     }
 
     public void setCategoria(Categoria categoria) {
-        this.categoria = categoria;
+
+        if (categoria == null || categoria.toString().isEmpty()){
+            this.categoria = Categoria.OUTRAS;
+        } else {
+            this.categoria = categoria;
+        }
     }
 }

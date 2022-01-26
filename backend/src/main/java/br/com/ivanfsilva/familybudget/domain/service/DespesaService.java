@@ -2,11 +2,9 @@ package br.com.ivanfsilva.familybudget.domain.service;
 
 import br.com.ivanfsilva.familybudget.api.dto.DespesaDTO;
 import br.com.ivanfsilva.familybudget.domain.model.orcamento.Despesa;
-import br.com.ivanfsilva.familybudget.domain.model.orcamento.Receita;
 import br.com.ivanfsilva.familybudget.domain.repository.DespesaRepository;
 import br.com.ivanfsilva.familybudget.domain.service.exceptions.DatabaseException;
 import br.com.ivanfsilva.familybudget.domain.service.exceptions.DespesaExistenteException;
-import br.com.ivanfsilva.familybudget.domain.service.exceptions.ReceitaExistenteException;
 import br.com.ivanfsilva.familybudget.domain.service.exceptions.ResourceNotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataIntegrityViolationException;
@@ -80,6 +78,9 @@ public class DespesaService {
         entity.setData(dto.getData());
         entity.setLancamento(dto.getLancamento());
         entity.setValor(dto.getValor());
+//        if (dto.getCategoria().toString().equals("")){
+//            entity.setCategoria(Categoria.OUTRAS);
+//        }
         entity.setCategoria(dto.getCategoria());
     }
 

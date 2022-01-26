@@ -1,7 +1,6 @@
 package br.com.ivanfsilva.familybudget.domain.repository;
 
 import br.com.ivanfsilva.familybudget.domain.model.orcamento.Despesa;
-import br.com.ivanfsilva.familybudget.domain.model.orcamento.Receita;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
